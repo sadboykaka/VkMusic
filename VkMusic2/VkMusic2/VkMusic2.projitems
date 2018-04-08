@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>7f883644-2f4c-4782-a3bc-e7100bc78dd5</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>VkMusic2</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Algh\Api\Android\AndroidAudioServicePlayer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Algh\Api\Android\AndroidPlayerNotification.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Algh\Api\Android\AndroidTrackList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Algh\Api\Android\AudioService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Algh\Api\HttpUser\FileManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Algh\Api\HttpUser\Audio.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Algh\Api\HttpUser\Client.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Algh\Api\HttpUser\Cookies.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Algh\Api\HttpUser\Data.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Algh\Api\HttpUser\Decode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Algh\Api\HttpUser\Music.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Algh\Api\Android\MessageReplyReceiver.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Algh\exceptions\LoginException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Algh\interfaces\IAudio.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Algh\interfaces\IData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Algh\interfaces\IPlayer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Algh\interfaces\ITrackList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Algh\interfaces\ITrackManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Algh\interfaces\IMusic.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Algh\interfaces\IUser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Algh\SearchHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Collection.xaml.cs">
+      <DependentUpon>Collection.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Downloads.xaml.cs">
+      <DependentUpon>Downloads.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Music.xaml.cs">
+      <DependentUpon>Music.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\AdView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\AudioDownloadList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\AudioInfoView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\AudioListViewWithOutSelect.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\AudioPlayerView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ClickableIcon.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\CustomSlider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\DataTemplateAudio.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\AudioListViewWithCheckBoxes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\DataTemplateAudioDownload.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Renders\Android\AdViewRender.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Renders\Android\CustomSliderRender.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Collection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Music.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Downloads.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>
