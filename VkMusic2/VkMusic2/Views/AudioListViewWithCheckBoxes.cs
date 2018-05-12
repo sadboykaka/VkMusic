@@ -42,9 +42,14 @@ namespace VkMusic2.Views
 
         public void setCheckBoxes(bool f)
         {
+            var buf = SelectedItem;
             CheckBoxes = f;
             if (CheckBoxes) ItemTemplate = DataTemplateWithCheckBoxes;
             else ItemTemplate = DataTemplateWithoutCheckBoxes;
+
+           
+            SelectedItem = null;
+            SelectedItem = buf;
         }
 
     }

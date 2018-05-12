@@ -19,8 +19,10 @@ namespace Algh.interfaces
         int Duration { get; }
 
         bool IsPlay { get; }
-
+        bool Repeat { get; set; }
         ITrackList TrackList { get; }
+
+        IEqualizer Equalizer { get; }
 
         event EventHandler<bool> PlayEvent;
         event EventHandler<int> SeekEvent;

@@ -25,7 +25,7 @@ namespace Algh.Api.HttpUser
         public const string SearchPage = "https://m.vk.com/audio?act=search&q=";
         public const string UserMusicPage = "https://m.vk.com/audio";
 
-
+        public int Id { get; private set; }
 
         public IData Data { get; private set; }
 
@@ -45,11 +45,23 @@ namespace Algh.Api.HttpUser
             //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
             loginClient = new HttpClient(loginHandler) { Timeout = TimeSpan.FromSeconds(150) };
             loginClient.DefaultRequestHeaders.Add("Accept-Encoding", "gzip, deflate");
-            loginClient.DefaultRequestHeaders.Add("Accept-Language", "ru-RU,ru;q=0.8,en-US;q=0.6,en;q=0.4");
-            loginClient.DefaultRequestHeaders.Add("Cache-Control", "no-cache");
-            loginClient.DefaultRequestHeaders.Add("Accept", "*/*");
-            loginClient.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36");
+            loginClient.DefaultRequestHeaders.Add("Accept-Language", "ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7");
+            loginClient.DefaultRequestHeaders.Add("Cache-Control", "max-age=0");
+            loginClient.DefaultRequestHeaders.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8");
+            loginClient.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36");
             //---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        }
+
+        public async Task<string> GetMobileVersion()
+        {
+            loginHandler.CookieContainer.Add(new Cookie("remixmdevice", "1920/1080/1/!!-!!!!") { Domain = "m.vk.com" });
+            loginHandler.CookieContainer.Add(new Cookie("remixdt", "0") { Domain = "m.vk.com" });
+            loginHandler.CookieContainer.Add(new Cookie("remixseenads", "2") { Domain = "m.vk.com" });
+            loginHandler.CookieContainer.Add(new Cookie("remixflash", "27.0.0") { Domain = "m.vk.com" });
+            loginHandler.CookieContainer.Add(new Cookie("remixscreen_depth", "24") { Domain = "m.vk.com" });
+            loginHandler.CookieContainer.Add(new Cookie("remixab", "1") { Domain = "m.vk.com" });
+            var resI = await loginClient.GetAsync("https://m.vk.com/audio");
+            return await resI.Content.ReadAsStringAsync();
         }
 
         public bool CheckCookies()
@@ -99,20 +111,33 @@ namespace Algh.Api.HttpUser
             return Regex.IsMatch(res.RequestMessage.RequestUri.ToString(), "hash");
         }
 
-        public async Task<bool> Login()
+        public bool Login()
         {
             if (IsConnected) return true;
             CookieContainer res = Cookies.ReadCookiesFromDisk(Cookies.BaseName);
             if (res == null) return false;
             loginHandler.CookieContainer = res;
             IsConnected = true;
-
-            await loginClient.GetAsync(startPage);
-            if (CheckCookies()) return true;
+            Id = GetId();
+            if (CheckCookies() && Id != -1) return true;
             else
             {
                 Cookies.DeleteCookies(Cookies.BaseName);
                 return false;
+            }
+         
+        }
+
+        private int GetId()
+        {
+            var ch = loginHandler.CookieContainer.GetCookies(new Uri("https://login.vk.com"));
+            try
+            {
+                var e = ch["l"].Value;
+                return Convert.ToInt32(ch["l"].Value);
+            }
+            catch {
+                return -1;
             }
         }
 
@@ -122,6 +147,8 @@ namespace Algh.Api.HttpUser
             var sendpContent = await GetLoginContent(login, pass);
             if (!CheckLogin(await loginClient.PostAsync(loginPage, sendpContent))) return false;
             //-------------------------------------------------------------------
+            Id = GetId();
+            if (Id == -1) return false;
             Cookies.WriteCookiesToDisk(Cookies.BaseName, loginHandler.CookieContainer);
             IsConnected = true;
             return true;
@@ -130,9 +157,10 @@ namespace Algh.Api.HttpUser
         public async void Logout()
         {
             if (!IsConnected) return;
+            IsConnected = false;
             Cookies.DeleteCookies(Cookies.BaseName);
             await loginClient.GetAsync(await GetExitLink());
-            IsConnected = false;
+            
         }
 
         private async Task<string> GetExitLink()

@@ -14,6 +14,10 @@ namespace Algh.interfaces
         Task<IEnumerable<IAudio>> GetMyMusic(int offset);
 
         Task<Stream> LoadTrack(IAudio audio);
+        Task<Stream> LoadCover(IAudio audio);
 
+        void DeleteTrack(IAudio track);
+
+        void AddTrack(IAudio track);
     }
 }

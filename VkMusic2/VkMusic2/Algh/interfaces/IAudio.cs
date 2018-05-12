@@ -9,5 +9,11 @@ namespace Algh.interfaces
         string Author { get; set; }
         string Name { get; set; }
         string Url { get; set; }
+
+        string ID { get; set; }
+
+        string Cover { get; set; }
+
+        string From { get; set; }
     }
 }

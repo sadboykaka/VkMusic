@@ -23,7 +23,8 @@ namespace VkMusic2.Views.Renders.Android
                         Element.UserValue = e.Progress;
                     }
                 };
-                bar.Max = 1;    
+                bar.Max = Element.Maximum;
+                bar.Progress = Element.Value;
                 SetNativeControl(bar);
                 
             }
@@ -32,7 +33,6 @@ namespace VkMusic2.Views.Renders.Android
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             base.OnElementPropertyChanged(sender, e);
-
             if (e.PropertyName == CustomSlider.MaximumProperty.PropertyName)
             {
                 if (Element.Maximum > Control.Progress) Control.Progress = 0;

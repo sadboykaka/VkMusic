@@ -16,7 +16,7 @@ namespace VkMusic2.Views.Renders.Android
         string adUnitId = string.Empty;
         AdSize adSize = AdSize.SmartBanner;
         AdView adView;
-        AdView CreateNativeControl()
+        override protected AdView CreateNativeControl()
         {
             if (adView != null)
                 return adView;

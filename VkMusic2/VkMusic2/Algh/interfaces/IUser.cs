@@ -9,7 +9,9 @@ namespace Algh.interfaces
     {
         Task<bool> Login(string name, string pass);
 
-        Task<bool> Login();
+        Task<string> GetMobileVersion();
+
+        bool Login();
 
         void Logout();
         IData Data { get; }

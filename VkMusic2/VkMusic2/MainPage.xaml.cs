@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-
 namespace VkMusic2
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -16,7 +15,6 @@ namespace VkMusic2
         public MainPage ()
         {
             NavigationPage.SetHasNavigationBar(this, false);
-            
             InitializeComponent();
         }
     }
